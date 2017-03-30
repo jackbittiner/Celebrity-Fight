@@ -48,6 +48,22 @@ class Battle < Sinatra::Base
     erb :play2
   end
 
+  post '/attack2' do
+    @player_1 = $game.player_1
+    @player_2 = $game.player_2
+    $player_2_attack = params[:player_2_attack]
+    $game.attack(@player_1, $player_2_attack)
+    redirect '/fight2'
+  end
+
+  get '/fight2' do
+    # @player_1_attack = $game.attack($game.player_1, params[:player_1_attack])
+    @player_1_name = $game.player_name($game.player_1)
+    @player_2_name = $game.player_name($game.player_2)
+    @player_1_fame_points = $game.player_1.fp
+    erb :fight2
+  end
+
 
     # start the server if ruby file executed directly
     run! if app_file == $0
