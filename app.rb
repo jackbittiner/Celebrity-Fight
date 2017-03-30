@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative './lib/player'
+require_relative './lib/game'
 
 class Battle < Sinatra::Base
 
@@ -11,29 +12,32 @@ class Battle < Sinatra::Base
 
   post '/names' do
     p params
-    $player_1 = Player.new(params[:player_1_name])
-    $player_2 = Player.new(params[:player_2_name])
+    @player_1 = Player.new(params[:player_1_name])
+    @player_2 = Player.new(params[:player_2_name])
+    $game = Game.new(@player_1, @player_2)
     redirect '/play'
   end
 
   get '/play' do
-    @player_1_name = $player_1.name
-    @player_2_name = $player_2.name
-    @player_2_fame_points = $player_2.fp
+    @player_1_name = $game.player_1.name
+    @player_2_name = $game.player_2.name
+    @player_2_fame_points = $game.player_2.fp
     erb :play
   end
 
   post '/attack' do
+    @player_1 = $game.player_1
+    @player_2 = $game.player_2
     $player_1_attack = params[:player_1_attack]
-    $player_1.attack($player_2, params[:player_1_attack])
+    $game.attack(@player_2, $player_1_attack)
     redirect '/fight'
   end
 
   get '/fight' do
-    @player_1_attack = $player_1_attack
-    @player_1_name = $player_1.name
-    @player_2_name = $player_2.name
-    @player_2_fame_points = $player_2.fp
+    @player_1_attack = $game.attack($game.player_1, params[:player_1_attack])
+    @player_1_name = $game.player_1.name
+    @player_2_name = $game.player_2.name
+    @player_2_fame_points = $game.player_2.fp
     erb :fight
   end
 

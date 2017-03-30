@@ -11,9 +11,9 @@ class Player
     @fp = DEFAULT_FP
   end
 
-  def attack(player, option)
-    player.got_attacked(option)
-  end
+  #def attack(player, option)
+  #  player.got_attacked(option)
+  #end
 
   def got_attacked(option)
     self.fp -= 10
