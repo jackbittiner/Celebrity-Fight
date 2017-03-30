@@ -100,6 +100,73 @@ class Battle < Sinatra::Base
     erb :win2
   end
 
+################################################################
+################################################################
+################################################################
+################################################################
+################################################################ 1 player game
+
+  post '/lonely_names' do
+    p params
+    @player_1 = Player.new(params[:lonely_player])
+    @player_2 = Player.new('Mandy Dingle')
+    @game = Game.create(@player_1, @player_2)
+    redirect '/lonely_play'
+  end
+
+  get '/lonely_play' do
+    @game = Game.instance
+    @player_1_name = @game.player_name(@game.player_1)
+    @player_2_name = @game.player_name(@game.player_2)
+    @player_2_fame_points = @game.player_2.fp
+    @player_1_fame_points = @game.player_1.fp
+    erb :lonely_play
+  end
+
+  post '/lonely_attack' do
+    @game = Game.instance
+    @player_1 = @game.player_1
+    @player_2 = @game.player_2
+    $player_1_attack = params[:player_1_attack]
+    if $player_1_attack != "is filled with rage as you restore your celebrity status by adopting a village of African children"
+      @game.attack(@player_2, $player_1_attack)
+    else
+      @game.restore_points(@player_1, $player_1_attack)
+    end
+    if @game.player_2.fp <= 0
+      redirect '/lonely_win'
+    else
+      redirect '/lonely_fight'
+    end
+  end
+
+  get '/lonely_fight' do
+    @game = Game.instance
+    @player_1_name = @game.player_name(@game.player_1)
+    @player_2_name = @game.player_name(@game.player_2)
+    @player_2_fame_points = @game.player_2.fp
+    @player_1_fame_points = @game.player_1.fp
+    erb :lonely_fight
+  end
+
+  get '/lonely_fight2' do
+    @game = Game.instance
+    @player_1_name = @game.player_name(@game.player_1)
+    @player_2_name = @game.player_name(@game.player_2)
+    @player_2_fame_points = @game.player_2.fp
+    @player_1_fame_points = @game.player_1.fp
+    @player_1 = @game.player_1
+    @player_2 = @game.player_2
+    $player_1_attack = @player_1.computer_attack
+    @game.attack(@player_1, $player_1_attack)
+    if @game.player_2.fp <= 0
+      redirect '/lonely_win'
+    else
+      #redirect '/lonely_fight2'
+      erb :lonely_fight2
+    end
+  end
+
 
     # start the server if ruby file executed directly
     run! if app_file == $0
