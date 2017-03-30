@@ -19,8 +19,8 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    @player_1_name = $game.player_1.name
-    @player_2_name = $game.player_2.name
+    @player_1_name = $game.player_name($game.player_1)
+    @player_2_name = $game.player_name($game.player_2)
     @player_2_fame_points = $game.player_2.fp
     erb :play
   end
@@ -35,8 +35,8 @@ class Battle < Sinatra::Base
 
   get '/fight' do
     @player_1_attack = $game.attack($game.player_1, params[:player_1_attack])
-    @player_1_name = $game.player_1.name
-    @player_2_name = $game.player_2.name
+    @player_1_name = $game.player_name($game.player_1)
+    @player_2_name = $game.player_name($game.player_2)
     @player_2_fame_points = $game.player_2.fp
     erb :fight
   end

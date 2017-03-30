@@ -10,4 +10,8 @@ class Game
   def attack(player, option)
     player.got_attacked(option)
   end
+
+  def player_name(player)
+    player.name 
+  end
 end
