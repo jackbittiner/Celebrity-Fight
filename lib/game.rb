@@ -11,6 +11,10 @@ class Game
     player.got_attacked(option)
   end
 
+  def restore_points(player, option)
+    player.restore_points(option)
+  end
+
   def player_name(player)
     player.name
   end

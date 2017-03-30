@@ -11,6 +11,12 @@ class Player
     @fp = DEFAULT_FP
   end
 
+  def restore_points(option)
+    if option == "is filled with rage as you restore your celebrity status by adopting a village of African children"
+      self.fp += 10
+    end
+  end
+
 
   def got_attacked(option)
       if option == "has been sent to the Jungle"
