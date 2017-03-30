@@ -22,17 +22,17 @@ class Player
       if option == "has been sent to the Jungle"
       self.fp -= 10
     elsif option == "has been embarrassingly tripped up on the red carpet"
-      self.fp -= 25
+      self.fp -= 20 + rand(11)
     elsif option == "has had their private matters leaked"
-      self.fp -= 40
+      self.fp -= -50 + rand(100)
     elsif option == "has had their drink spiked at the Made In Chelsea premier after party"
-      self.fp -= 15
+      self.fp -= rand(20)
     elsif option == "flashes a hint of side boob in an embellished sheer dress at the NYC premiere of Ghostbusters"
-      self.fp -= 5
+      self.fp -= -5 + rand(10)
     elsif option == "is accused of photoshopping their NAKED picture to promote raunchy new shoe range"
-      self.fp -= 30
+      self.fp -= 15
     elsif option == "got caught on camera expressing alt-right views"
-      self.fp -= 99
+      self.fp -= rand(100)
     else
       self.fp -= 7
     end
