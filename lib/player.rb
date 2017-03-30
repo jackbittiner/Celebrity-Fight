@@ -11,15 +11,26 @@ class Player
     @fp = DEFAULT_FP
   end
 
-  #def attack(player, option)
-  #  player.got_attacked(option)
-  #end
 
   def got_attacked(option)
-    self.fp -= 10
+      if option == "has been sent to the Jungle"
+      self.fp -= 10
+    elsif option == "has been embarrassingly tripped up on the red carpet"
+      self.fp -= 25
+    elsif option == "has had their private matters leaked"
+      self.fp -= 40
+    elsif option == "has had their drink spiked at the Made In Chelsea premier after party"
+      self.fp -= 15
+    elsif option == "flashes a hint of side boob in an embellished sheer dress at the NYC premiere of Ghostbusters"
+      self.fp -= 5
+    elsif option == "is accused of photoshopping their NAKED picture to promote raunchy new shoe range"
+      self.fp -= 30
+    elsif option == "got caught on camera expressing alt-right views"
+      self.fp -= 99
+    else
+      self.fp -= 7
+    end
   end
-
-
 
   attr_writer :fp
 
