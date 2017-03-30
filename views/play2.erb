@@ -1,0 +1,15 @@
+<div>
+  <h1><%=@player_1_name%> vs. <%=@player_2_name%></h1>
+  <h3><%=@player_1_name%>: <%=@player_1_fame_points%> Fame Points</h3>
+</div>
+
+<form action="/attack" method="post">
+<label for="action">Options:</label>
+<select name="player_1_attack" id="action">
+  <option value="has been sent to the Jungle">Jungle</option>
+  <option value="has been embarrassingly tripped up on the red carpet">Trip</option>
+  <option value="has had their private matters leaked">Sexy Tape</option>
+  <option value="has...">Tabloid Story</option>
+</select>
+<button type="submit" value="submit">Do It</button>
+</form>
