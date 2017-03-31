@@ -3,9 +3,12 @@ html {
   position: relative;
 }
 body {
-  background-color: rgb(146, 168, 204);
   text-align: center;
-}
+  background-image: url("https://www.unrealitytv.co.uk/wp-content/uploads/2013/01/lisa-riley-emmerdale-460x329.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: pink;
+  }
 p {
   font-family: helvetica, sans-serif;
   font-size: 22px;
@@ -17,9 +20,4 @@ h1 {
 h2 {
   font-family: helvetica oblique, sans-serif;
   font-size: 34px
-}
-img {
-  width: 100%;
-  max-width: 666px;
-  max-height: 400px;
 }
